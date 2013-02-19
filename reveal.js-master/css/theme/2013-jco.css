@@ -1,0 +1,53 @@
+/* browser */
+.reveal .browser-support {
+    font: bold 32px "Arial Black";
+    margin: 100px auto 0;
+}
+.reveal .browser-support tr {
+}
+.reveal .browser-support th,
+.reveal .browser-support td {
+    text-align: center;
+}
+.reveal .browser-support th {
+    padding: 50px 20px 0;
+    vertical-align: top;
+}
+.reveal .browser-support td {
+    background-repeat: no-repeat;
+    background-position: top center;
+    padding: 150px 0 60px;
+    vertical-align: middle;
+    width: 150px;
+}
+.reveal .browser-support .desktop .ie {
+    background-image: url(../../icon/ie.png);
+}
+.reveal .browser-support .chrome {
+    background-image: url(../../icon/chrome.png);
+}
+.reveal .browser-support .firefox {
+    background-image: url(../../icon/firefox.png);
+}
+.reveal .browser-support .desktop .safari {
+    background-image: url(../../icon/safari.png);
+}
+.reveal .browser-support .mobile .android {
+    background-image: url(../../icon/android.png);
+}
+.reveal .browser-support .mobile .safari {
+    background-image: url(../../icon/safari_m.png);
+}
+.reveal .browser-support .not-yet {
+    -webkit-filter: grayscale(1);
+}
+
+.reveal iframe {
+	display: block;
+    background: #eee;
+    height: 600px;
+    width: 800px;
+	margin: 0 auto;
+}
+
+
