@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		
+
+		<link rel="stylesheet" href="reveal.js-master/css/reveal.min.css">
+		<link rel="stylesheet" href="reveal.js-master/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="reveal.js-master/css/theme/2013-jco.css" id="theme">
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="reveal.js-master/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="reveal.js-master/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>
+						웹에서 시작하는<br>
+						3d프로그래밍</h2>
+					<div>
+						<br>
+					</div>
+					<div>
+						<br>
+					</div>
+					<div>
+						<br>
+					</div>
+					<p style="text-align: center;">JenniferSoft / 김학진</p>
+				</section>
+				<section>
+					<section>
+						<h2>발표자 소개</h2>
+						<ul class="fragment">
+							<li>2007년 ~ 2011년 Java 3D 개발</li>
+							<li>LWJGL (LightWeight Java Game Library) </li>
+							<li>Ardor3d (http://www.ardor3d.com/) </li>
+							<li>JME (http://jmonkeyengine.com/)</li>
+						</ul>
+					</section>
+					<section>
+						<p style="text-align: center;">lwjgl + jme</p>
+						<img src="reveal.js-master/img/ecclus.jpg">
+					</section>
+					<section>
+						<p style="text-align: center;">lwjgl + jme</p>
+						<img src="reveal.js-master/img/xview.jpg">
+					</section>
+					<section>
+						<p style="text-align: center;">lwjgl + ardor3d</p>
+						<img src="reveal.js-master/img/trinia.jpg">
+					</section>
+					<section>
+						<p style="text-align: center;">html5</p>
+						<img src="reveal.js-master/img/jennifer5.png">
+					</section>
+				</section>
+				<section>
+					<h2>오늘의 주제</h2>
+					<!-- 오늘의 주제-->
+					<ul>
+						<li class="fragment">WebGL</li>
+						<li class="fragment">Three.js (3d programming) </li>
+						<li class="fragment">Util.js </li>
+						<li class="fragment">WebGL로 할수 있는것들</li>
+					</ul>
+				</section>
+				<section>
+					<h2>webgl</h2>
+					<ul class="fragment">
+						<li>웹 기반의 하드웨어(GPU) 가속을 받는 3D Graphics Library</li>
+						<li>OpenGL ES 2.0</li>
+					</ul>
+				</section>
+				<section>
+					<!-- computer mobile web -->
+					<img src="reveal.js-master/img/webgl_navi.jpg">
+					<!-- 
+					http://pixabay.com/static/uploads/photo/2012/04/02/16/38/computer-24905_640.png
+					http://farm1.staticflickr.com/125/415093857_17babebe5e.jpg
+					http://www.soft32.com/blog/wp-content/uploads/2013/01/web-browsers.jpg
+					-->
+				</section>
+				<section>
+					<h2>지원 브라우저</h2>
+					<table class="browser-support">
+                        <tbody>
+						<tr class="desktop">
+                            <th>데스크탑</th>
+                            <td class="ie not-yet"></td>
+                            <td class="chrome"></td>
+                            <td class="firefox"></td>
+                            <td class="safari"></td>
+                        </tr>
+                        <tr class="mobile">
+                            <th>모바일</th>
+							<td class="android not-yet"></td>
+                            <td class="chrome not-yet"></td>
+							<td class="firefox not-yet"></td>
+                            <td class="safari not-yet"></td>
+                            <td></td>
+                        </tr>
+						</tbody>
+					</table>
+					
+					<!-- ms 지원에 관현 애기도 해보자 iewebgl???-->
+					<!-- http://www.iconeasy.com/iconset/browsers-icons/ -->
+				</section>
+				<section>
+					<h2>IE는 사용하지 못하나요?</h2>
+					<ul class="fragment">
+						<li><b>IEWebGL</b> (http://iewebgl.com)</li>
+						<li>IE Plugin</li>
+						<li>Works in all actual IE versions</li>
+					</ul>
+				</section>
+				<section>
+					<h2>모바일은 ?</h2>
+					<ul class="fragment">
+						<li>Chrome 25beta 지원 예정</li>
+						<li>모바일 그래픽칩 OpenGL ES 2.0를 지원</li>
+						<li>향후 모든 모바일 기기 브라우저에서 지원될수 있음</li>
+					</ul>
+				</section>
+				<section>
+					<p style="text-align: center;">http://get.webgl.org/</p>
+					<img src="reveal.js-master/img/get-webgl.png">
+				</section>
+				
+				<!--
+				<section>
+					<h2>2d vs 3d</h2>
+					<div>
+						<br>
+					</div>
+					<div>3d의 인식을 목표로함</div>
+					<div>2d로 렌더링을 할때와 3d로 렌더링을 할때의 차이를</div>
+					<div>인식시키기 위해&nbsp;</div>
+					<div>2d canvas를 이용할때와 webgl을 이용할때 에니메이션차이를 주자</div>
+					<div>
+						<br>
+					</div>
+				</section>
+				-->
+				<section>
+					<h2>Geometry</h2>
+					<ul>
+						<li >VBO(VertexBufferObject)+ IBO(IndexBufferObject)</li>
+						<li >Polygon</li>
+						<li >Quad</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Polygon</h2>
+					
+					<pre class="fragment"><code  style="font-size: 18px;">
+var vertices = [
+             -1.0, -1.0,  0.0,
+             0.0,  1.0,  0.0,
+             1.0, -1.0,  0.0
+        ];
+var indices = [0, 2, 1];
+					</code></pre>
+					<img class="fragment" src="reveal.js-master/img/polygon.jpg">
+				<!-- 폴리곤을 구성하는 vbo ibo에 대한 설명이 필요하다 -->
+				</section>
+				<section>
+					<h2>Quad</h2>
+					
+					<pre class="fragment"><code  style="font-size: 18px;">
+var vertices = [
+             -1.0, -1.0,  0.0,
+             0.0,  1.0,  0.0,
+             1.0, -1.0,  0.0,
+             2,0, 1,0, 0,0
+        ];
+var indices = [0, 2, 1, 1, 2, 3];
+					</code></pre>
+					<img class="fragment" src="reveal.js-master/img/quad.jpg">
+				<!-- 폴리곤을 구성하는 vbo ibo에 대한 설명이 필요하다 -->
+				</section>
+				
+				
+				<section>
+					<h2>WebGL’s rendering pipeline</h2>
+					<img src="reveal.js-master/img/webgl_rendering_pipeline.png">
+				<!-- ibo+vbo 렌더링 파이프 라인에 대한 이해가 필요함 -->
+				</section>
+				<!-- http://learningwebgl.com -->
+				<section>
+					<h2>WebGL 샘플코드를 짜볼까요?</h2>
+					<iframe data-src="reveal.js-master/ex/sample.html" src="reveal.js-master/ex/sample.html"></iframe>
+				</section>
+				<section>
+					<h2> WebGL code(1)</h2>
+					<pre><code  style="font-size: 18px;">
+function webGLStart() {
+    var canvas = document.getElementById("canvas-id");
+    initGL(canvas);
+    initShaders()
+    initBuffers();
+
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.enable(gl.DEPTH_TEST);
+
+    drawScene();
+}
+					</code></pre>
+				</section>
+				<section>
+					<h2> WebGL code(2)</h2>
+					<pre><code  style="font-size: 18px;">
+function initGL(canvas) {
+    try {
+        gl = canvas.getContext("experimental-webgl");
+        gl.viewportWidth = canvas.width;
+        gl.viewportHeight = canvas.height;
+    } catch (e) {
+    }
+    if (!gl) {
+        alert("Could not initialise WebGL, sorry :-(");
+    }
+}
+					</code></pre>
+				</section>
+				<section>
+					<h2> WebGL code(3)</h2>
+					<pre><code  style="font-size: 18px;">
+function initShaders() {
+	var fragmentShader = getShader(gl, "shader-fs");
+	var vertexShader = getShader(gl, "shader-vs");
+
+	shaderProgram = gl.createProgram();
+	gl.attachShader(shaderProgram, vertexShader);
+	gl.attachShader(shaderProgram, fragmentShader);
+	gl.linkProgram(shaderProgram);
+
+	if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+		alert("Could not initialise shaders");
+	}
+
+	gl.useProgram(shaderProgram);
+
+	shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+	gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
+
+	shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColor");
+	gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
+
+	shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
+	shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+}
+					</code></pre>
+				</section>
+				<section>
+					<h2> WebGL code(4)</h2>
+					<pre><code  style="font-size: 18px;">
+function initBuffers() {
+	triangleVertexPositionBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
+	var vertices = [
+		 0.0,  1.0,  0.0,
+		-1.0, -1.0,  0.0,
+		 1.0, -1.0,  0.0
+	];
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+	triangleVertexPositionBuffer.itemSize = 3;
+	triangleVertexPositionBuffer.numItems = 3;
+	
+	var indices = [0, 2, 1];
+	
+	triangleIndexPositionBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, triangleIndexPositionBuffer);
+	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
+
+	triangleVertexColorBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
+	var colors = [
+		1.0, 0.0, 0.0, 1.0,
+		0.0, 1.0, 0.0, 1.0,
+		0.0, 0.0, 1.0, 1.0
+	];
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+	triangleVertexColorBuffer.itemSize = 4;
+	triangleVertexColorBuffer.numItems = 3;
+}
+					</code></pre>
+				</section>
+				<section>
+					<h2> WebGL code(5)</h2>
+					<pre><code  style="font-size: 18px;">
+   function drawScene() {
+	gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
+	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+	mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
+
+	mat4.identity(mvMatrix);
+
+	mat4.translate(mvMatrix, [0, 0.0, -7.0]);
+	gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
+	gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+	gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
+	gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, triangleVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+	setMatrixUniforms();
+		
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, triangleIndexPositionBuffer);
+	gl.drawElements(gl.TRIANGLES, 3, gl.UNSIGNED_SHORT,0);
+	
+}
+					</code></pre>
+				</section>
+				<section>
+				<!-- http://learningwebgl.com -->
+					<iframe data-src="reveal.js-master/ex/sample.html" src="reveal.js-master/ex/sample.html"></iframe>
+				</section>
+				<section>
+					<img src="reveal.js-master/img/dis-cartoon1.jpg">
+				</section>
+				<section>
+					<img src="reveal.js-master/img/dis-cartoon.gif">
+				</section>
+				<section>
+					<h2>WebGL Engine.js</h2>
+					<ul>
+						<li class="fragment">Three.js</li>
+						<li class="fragment">SpiderGL</li>
+						<li class="fragment">SceneJS</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Three.js</h2>
+					<ul>
+						<li class="fragment">Abstraction layer over WebGL</li>
+						<li class="fragment">3D scenegraph library</li>
+						<li class="fragment">http://github.com/mrdoob/three.js</li>
+						<li class="fragment">2010 04 24 ~ 2013 02 15 - r56</li>
+						<li class="fragment"> + : Active Community, updated frequently</li>
+						<li class="fragment"> - : Documentation</li>
+						<li class="fragment">http://mrdoob.com/</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Three.js sample</h2>
+					<pre><code  style="font-size: 18px;">
+var camera, scene, renderer;
+var mesh;
+
+init();
+animate();
+
+function init() {
+
+	renderer = new THREE.WebGLRenderer();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( renderer.domElement );
+
+	//
+
+	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+	camera.position.z = 400;
+
+	scene = new THREE.Scene();
+
+	var geometry = new THREE.CubeGeometry( 200, 200, 200 );
+	var material = new THREE.MeshNormalMaterial();
+
+	mesh = new THREE.Mesh( geometry, material );
+	scene.add( mesh );
+
+	window.addEventListener( 'resize', onWindowResize, false );
+}
+
+function onWindowResize() {
+
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize( window.innerWidth, window.innerHeight );
+
+}
+
+function animate() {
+
+	requestAnimationFrame( animate );
+
+	mesh.rotation.x += 0.005;
+	mesh.rotation.y += 0.01;
+
+	renderer.render( scene, camera );
+
+}
+					</code></pre>
+				</section>
+				<section>
+				<!-- http://learningwebgl.com -->
+					<h2>Three.js sample</h2>
+					<iframe src="reveal.js-master/ex/threejssample.html"></iframe>
+				</section>
+				<!--
+				
+				임팩트한 예제를 넣고 구현해보자????
+				
+				
+				Renderers
+				Cameras
+				Lights
+				Materials
+				Shaders
+				Objects
+				Geometry
+				Export/Import (blender - export plugin)
+				-->
+				<section>
+					<h2>좌표계</h2>
+					<div>
+						<ul>
+							<li>DiretX (왼손 좌표계)</li>
+							<li>OpenGL (오른손 좌표계)</li>
+						</ul>
+					</div>
+					<div class="fragment"> 
+						<img src="reveal.js-master/img/coordinate.png">
+						<!-- http://msdn.microsoft.com/en-us/library/windows/desktop/bb204853(v=vs.85).aspx -->
+					</div>
+				</section>
+				<section>
+					<h2>Camera</h2>
+					<ul>
+						<li class="fragment">Perspective Camera (투시투영)</li>
+						<li class="fragment">Orthographic Camera (직교투영)</li>
+					</ul>
+				</section>
+				<section>
+					<iframe src="three.js-master/examples/canvas_camera_orthographic2.html"></iframe>
+				</section>
+				
+				<section>
+					<h2>Material</h2>
+					<ul>
+						<li class="fragment">MeshBasicMaterial</li>
+						<li class="fragment">MeshFaceMaterial</li>
+						<li class="fragment">MeshLambertMaterial</li>
+						<li class="fragment">MeshNormalMaterial</li>
+						<li class="fragment">MeshPhongMaterial</li>
+					</ul>
+				</section>
+				<section>
+				<!-- http://learningwebgl.com -->
+					<h2>Material</h2>
+					<iframe src="reveal.js-master/ex/webgl_materials.html"></iframe>
+				</section>
+				<section>
+					<h2>Mesh</h2>
+					<!-- <p style="text-align: center;">광원으로 부</p> -->
+					<ul>
+						<li class="fragment">그물망 형태로 만들어진 구조물 또는 그 형태</li>
+						<li class="fragment">Mesh = Geometry + Material</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Light</h2>
+					<!-- <p style="text-align: center;">광원으로 부</p> -->
+					<p style="text-align: center;">현실세계와 같이 물체를 식별하는데 빛이 필요하다.</p>
+					<ul>
+						<li class="fragment">Point Light</li>
+						<li class="fragment">Direction Light</li>
+						<li class="fragment">Spot Light</li>
+					</ul>
+				</section>
+				<!-- http://www.toymaker.info/Games/html/lighting.html -->
+				<section>
+					<h2>Point Light</h2>
+					<!-- <p style="text-align: center;">광원으로 부</p> -->
+					<img src="reveal.js-master/img/pl.jpg">
+				</section>
+				<section>
+					<h2>Direction Light</h2>
+					<!-- <p style="text-align: center;">광원으로 부</p> -->
+					<img src="reveal.js-master/img/dl.jpg">
+				</section>
+				<section>
+					<h2>Spot Light</h2>
+					<!-- <p style="text-align: center;">광원으로 부</p> -->
+					<img src="reveal.js-master/img/sl.jpg">
+				</section>
+				<!-- light 예제 만들자 -->
+				<section>
+					<h2>Texture</h2>
+					<p style="text-align: center;">다각형 표면을 효과적으로 이미지로 렌더링 하는 기법 </p>
+					<ul>
+						<li class="fragment"> <a href="three.js-master/examples/webgl_materials_bumpmap_not.html">모델</a></li>
+						<li class="fragment"> <a href="three.js-master/examples/webgl_materials_bumpmap.html">모델+텍스쳐(범프맵)</a></li>
+						<li class="fragment"> <a href="three.js-master/examples/webgl_materials_bumpmap_skin.html">모델+텍스쳐(범프맵+스킨)</a></li>
+					</ul>
+				</section>
+				<!--
+				<section>
+					<iframe  src="/three.js-master/examples/webgl_materials_bumpmap_not.html"></iframe>
+				</section>
+				<section>
+					<iframe  src="/three.js-master/examples/webgl_materials_bumpmap.html"></iframe>
+				</section>
+				<section>
+					<iframe  src="/three.js-master/examples/webgl_materials_bumpmap_skin.html"></iframe>
+				</section>
+				-->
+				<section>
+					<h2>Scene</h2>
+					<ul>
+						<li class="fragment">하나의 화면을 구성하는 집합체</li>
+						<li class="fragment">각각의 Scene으로 역할을 분리할수 있다</li>
+						<li class="fragment">저장이 가능하다</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Import</h2>
+					<ul>
+						<li>ColladaLoader .dae</li>
+						<li>JSONLoader .js</li>
+						<li>SceneLoader .js</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Export</h2>
+					<ul>
+						<li>Blender - http://www.blender.org/</li>
+						<li>.dae .json</li>
+						<li>http://www.turbosquid.com/</li>
+					</ul>
+				</section>
+				<!-- three.js code, sample -->
+				<section>
+					<h2>tQuery.js</h2>
+					<ul>
+						<li class="fragment">three.js + jQuery.js</li>
+						<li class="fragment">three.js 을 wrapping 하여 사용하기 더 쉽다</li>
+						<li class="fragment">ported to three.js R53</li>
+					</ul>
+				</section>
+				<section>
+					<h2>tQuery.js</h2>
+				<pre><code  style="font-size: 18px;">
+var world = tQuery.createWorld().boilerplate().start();
+var object = tQuery.createTorus().addTo(world);
+				</code></pre>
+				<iframe src="http://jeromeetienne.github.com/tquery/plugins/minimal/examples/"></iframe>
+				</section>
+				<section>
+					<h2>Physics Engine.js</h2>
+					<ul>
+						<!-- ammo.js is a direct port of the Bullet physics engine to JavaScript, using Emscripten-->
+						<li class="fragment">Physijs (for three.js base Ammo.js) </li>
+						<li class="fragment">cannon.js</li>
+						<li class="fragment">bullet.js</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Physijs</h2>
+					<ul>
+						<li><a href="http://chandlerprall.github.com/Physijs/examples/jenga.html">JengaExample</a></li>
+					<!-- <iframe data-src="http://chandlerprall.github.com/Physijs/examples/jenga.html" src="http://chandlerprall.github.com/Physijs/examples/jenga.html"></iframe> -->
+					</ul>
+				</section>
+				<section>
+					<h2>WebGL Inspector</h2>
+					<ul>
+						<li class="fragment">http://benvanik.github.com/WebGL-Inspector</li>
+						<li class="fragment">Capture individual frames</li>
+						<li class="fragment">View assets and programs</li> 
+						<li class="fragment"><a href="http://mrdoob.github.com/three.js/examples/webgl_materials_cars.html">Example</a></li>
+					</ul>
+				</section>
+				<section>
+					<section>
+					<h2>WebGL로 할수 있는것들</h2>
+					</section>
+					<section>
+					<h2>Google Map (WebGL)</h2>
+					<div>
+						<p style="text-align: center;">maps.google.com</p>
+						<img src="reveal.js-master/img/googlemap.png">
+					</div>
+					<!-- https://maps.google.com -->
+					</section>
+					<section>
+					<h2>Google Body</h2>
+					<div>
+						<p style="text-align: center;">www.zygotebody.com</p>
+						<img src="reveal.js-master/img/google-body-browser.jpg">
+					</div>
+					<!-- www.zygotebody.com-->
+					</section>
+					<section>
+					<h2>Game</h2>
+					<div>
+						<p style="text-align: center;">hexgl.bkcore.com</p>
+						<img src="reveal.js-master/img/hexgl.png">
+					</div>
+					<!-- hexgl.bkcore.com-->
+					</section>
+					<section>
+					<h2>WebGL Earth</h2>
+					<div>
+						<p style="text-align: center;">www.webglearth.com</p>
+						<img src="reveal.js-master/img/webglearth.png">
+					</div>
+					<!-- http://www.webglearth.com -->
+					</section>
+					
+					<section>
+					<h2>WebGL+3D printer</h2>
+					<div>
+						<p style="text-align: center;">www.myrobotnation.com</p>
+						<img src="reveal.js-master/img/robotnation.png">
+					</div>
+					<!-- www.myrobotnation.com-->
+					</section>
+					<section>
+					<h2>Visitor Monitor</h2>
+					<div>
+						<p style="text-align: center;">www.chromeweblab.com/lab-tag-explorer</p>
+						<img src="reveal.js-master/img/weblab.png">
+					</div>
+					<!-- http://www.chromeweblab.com/lab-tag-explorer -->
+					</section>
+					<section>
+					<h2>Arms and Ammunition</h2>
+					<!-- http://www.chromeweblab.com/lab-tag-explorer -->
+						<p style="text-align: center;">http://workshop.chromeexperiments.com/projects/armsglobe/</p>
+						<img src="reveal.js-master/img/arms.png">
+					</section>
+				</section>
+				<section>
+                    <h2>참고 사이트</h2>
+                    <ul>
+                        <li><a href="http://en.wikipedia.org/wiki/OpenGL">OpenGL - Wikipedia</a></li>
+                        <li><a href="http://en.wikipedia.org/wiki/OpenGL_ES">OpenGL ES - Wikipedia</a></li>
+                        <li><a href="http://en.wikipedia.org/wiki/Webgl">WebGL - Wikipedia</a></li>
+                        <li><a href="http://mrdoob.github.com/three.js">three.js</a></li>
+                        <li><a href="http://jeromeetienne.github.com/tquery/">tQuery</a></li>
+                        <li><a href="http://learningwebgl.com">learningwebgl</a></li>
+                        <li><a href="http://chandlerprall.github.com/Physijs">Physijs</a></li>
+                        <li><a href="http://benvanik.github.com/WebGL-Inspector">WebGL-Inspector</a></li>
+                    </ul>
+                </section>
+				<section>
+					<h2>감사합니다.</h2>
+					<br>
+					<h3>kaidu1982@gmail.com / 김학진</h3>
+				</section>
+			</div>
+		</div>
+
+		<script src="reveal.js-master/lib/js/head.min.js"></script>
+		<script src="reveal.js-master/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				//center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'reveal.js-master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal.js-master/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js-master/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js-master/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'reveal.js-master/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'reveal.js-master/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
