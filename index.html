@@ -138,22 +138,6 @@
 					<p style="text-align: center;">http://get.webgl.org/</p>
 					<img src="reveal.js-master/img/get-webgl.png">
 				</section>
-				
-				<!--
-				<section>
-					<h2>2d vs 3d</h2>
-					<div>
-						<br>
-					</div>
-					<div>3d의 인식을 목표로함</div>
-					<div>2d로 렌더링을 할때와 3d로 렌더링을 할때의 차이를</div>
-					<div>인식시키기 위해&nbsp;</div>
-					<div>2d canvas를 이용할때와 webgl을 이용할때 에니메이션차이를 주자</div>
-					<div>
-						<br>
-					</div>
-				</section>
-				-->
 				<section>
 					<h2>Geometry</h2>
 					<ul>
@@ -411,20 +395,7 @@ function animate() {
 					<h2>Three.js sample</h2>
 					<iframe src="reveal.js-master/ex/threejssample.html"></iframe>
 				</section>
-				<!--
 				
-				임팩트한 예제를 넣고 구현해보자????
-				
-				
-				Renderers
-				Cameras
-				Lights
-				Materials
-				Shaders
-				Objects
-				Geometry
-				Export/Import (blender - export plugin)
-				-->
 				<section>
 					<h2>좌표계</h2>
 					<div>
@@ -451,12 +422,13 @@ function animate() {
 				
 				<section>
 					<h2>Material</h2>
-					<ul>
-						<li class="fragment">MeshBasicMaterial</li>
-						<li class="fragment">MeshFaceMaterial</li>
-						<li class="fragment">MeshLambertMaterial</li>
-						<li class="fragment">MeshNormalMaterial</li>
-						<li class="fragment">MeshPhongMaterial</li>
+					<p class="fragment"style="text-align: center;">물체의 표면 재질을 결정하는 속성값</p>
+					<ul class="fragment">
+						<li>MeshBasicMaterial</li>
+						<li>MeshFaceMaterial</li>
+						<li>MeshLambertMaterial</li>
+						<li>MeshNormalMaterial</li>
+						<li>MeshPhongMaterial</li>
 					</ul>
 				</section>
 				<section>
@@ -466,7 +438,7 @@ function animate() {
 				</section>
 				<section>
 					<h2>Mesh</h2>
-					<!-- <p style="text-align: center;">광원으로 부</p> -->
+			
 					<ul>
 						<li class="fragment">그물망 형태로 만들어진 구조물 또는 그 형태</li>
 						<li class="fragment">Mesh = Geometry + Material</li>
@@ -474,7 +446,7 @@ function animate() {
 				</section>
 				<section>
 					<h2>Light</h2>
-					<!-- <p style="text-align: center;">광원으로 부</p> -->
+					
 					<p style="text-align: center;">현실세계와 같이 물체를 식별하는데 빛이 필요하다.</p>
 					<ul>
 						<li class="fragment">Point Light</li>
@@ -485,20 +457,26 @@ function animate() {
 				<!-- http://www.toymaker.info/Games/html/lighting.html -->
 				<section>
 					<h2>Point Light</h2>
-					<!-- <p style="text-align: center;">광원으로 부</p> -->
+					
 					<img src="reveal.js-master/img/pl.jpg">
 				</section>
 				<section>
 					<h2>Direction Light</h2>
-					<!-- <p style="text-align: center;">광원으로 부</p> -->
+					
 					<img src="reveal.js-master/img/dl.jpg">
 				</section>
 				<section>
 					<h2>Spot Light</h2>
-					<!-- <p style="text-align: center;">광원으로 부</p> -->
+					
 					<img src="reveal.js-master/img/sl.jpg">
 				</section>
-				<!-- light 예제 만들자 -->
+				<section>
+					<h2>Point Light Example</h2>
+					<ul>
+						<li class="fragment"> <a href="/three.js-master/examples/webgl_lights_pointlights.html">PointLight 4</a></li>
+						<li class="fragment"> <a href="/three.js-master/examples/webgldeferred_pointlights.html">PointLight 50</a></li>
+					</ul>
+				</section>
 				<section>
 					<h2>Texture</h2>
 					<p style="text-align: center;">다각형 표면을 효과적으로 이미지로 렌더링 하는 기법 </p>
@@ -508,31 +486,12 @@ function animate() {
 						<li class="fragment"> <a href="three.js-master/examples/webgl_materials_bumpmap_skin.html">모델+텍스쳐(범프맵+스킨)</a></li>
 					</ul>
 				</section>
-				<!--
-				<section>
-					<iframe  src="/three.js-master/examples/webgl_materials_bumpmap_not.html"></iframe>
-				</section>
-				<section>
-					<iframe  src="/three.js-master/examples/webgl_materials_bumpmap.html"></iframe>
-				</section>
-				<section>
-					<iframe  src="/three.js-master/examples/webgl_materials_bumpmap_skin.html"></iframe>
-				</section>
-				-->
 				<section>
 					<h2>Scene</h2>
 					<ul>
 						<li class="fragment">하나의 화면을 구성하는 집합체</li>
 						<li class="fragment">각각의 Scene으로 역할을 분리할수 있다</li>
 						<li class="fragment">저장이 가능하다</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Import</h2>
-					<ul>
-						<li>ColladaLoader .dae</li>
-						<li>JSONLoader .js</li>
-						<li>SceneLoader .js</li>
 					</ul>
 				</section>
 				<section>
@@ -543,7 +502,14 @@ function animate() {
 						<li>http://www.turbosquid.com/</li>
 					</ul>
 				</section>
-				<!-- three.js code, sample -->
+				<section>
+					<h2>Import</h2>
+					<ul>
+						<li>ColladaLoader .dae</li>
+						<li>JSONLoader .js</li>
+						<li>SceneLoader .js</li>
+					</ul>
+				</section>
 				<section>
 					<h2>tQuery.js</h2>
 					<ul>
